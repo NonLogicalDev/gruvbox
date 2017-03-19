@@ -363,9 +363,7 @@ function! s:HL(group, fg, ...)
     let emstr = 'NONE,'
   endif
 
-  " 
-  
-  fallback
+  " fallback
   if a:0 >= 3
     if g:gruvbox_guisp_fallback != 'NONE'
       let fg = a:3
