@@ -174,6 +174,7 @@ if s:is_dark
   elseif g:gruvbox_contrast_dark == 'hard'
     let s:bg0  = s:gb.dark0_hard
   endif
+  let s:bg0  = s:none
 
   let s:bg1  = s:gb.dark1
   let s:bg2  = s:gb.dark2
@@ -204,6 +205,7 @@ else
   elseif g:gruvbox_contrast_light == 'hard'
     let s:bg0  = s:gb.light0_hard
   endif
+  let s:bg0  = s:none
 
   let s:bg1  = s:gb.light1
   let s:bg2  = s:gb.light2
@@ -345,7 +347,7 @@ endif
 
 function! s:HL(group, fg, ...)
   " Arguments: group, guifg, guibg, gui, guisp
-
+  
   " foreground
   let fg = a:fg
 
@@ -373,6 +375,14 @@ function! s:HL(group, fg, ...)
     if g:gruvbox_guisp_fallback == 'bg'
       let emstr .= 'inverse,'
     endif
+  endif
+
+  if bg[0] == 'bg' && s:bg0[0] == 'NONE'
+    let bg = ['NONE', 'NONE']
+  endif
+
+  if fg[0] == 'bg' && s:bg0[0] == 'NONE'
+    let fg = ['NONE', 'NONE']
   endif
 
   let histring = [ 'hi', a:group,
